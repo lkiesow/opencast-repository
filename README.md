@@ -9,9 +9,9 @@ Role Variables
 
 - `opencast.version.major`
   - The version of Opencast for which the repository should be installed.
-- `repository.enables.release`
+- `repository.enabled.release`
   - If the release repository shall be enabled (default: `false`)
-- `repository.enables.testing`
+- `repository.enabled.testing`
   - If the testing repository shall be enabled (default: `false`)
 
 
