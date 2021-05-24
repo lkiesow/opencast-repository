@@ -1,0 +1,13 @@
+---
+
+- name: check that the architecture is supported
+  assert:
+    that: ansible_architecture == 'x86_64'
+
+- name: install on debian/ubuntu
+  include: debian.yml
+  when: ansible_os_family == 'Debian'
+
+- name: install on centos
+  include: rhel.yml
+  when: ansible_os_family == 'RedHat'

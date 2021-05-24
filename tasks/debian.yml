@@ -1,0 +1,12 @@
+---
+
+- name: install the opencast package repository key
+  apt_key:
+    url: https://pkg.opencast.org/gpgkeys/opencast-deb.key
+    state: present
+
+- name: install the opencast package repository
+  apt_repository:
+    repo: deb https://pkg.opencast.org/debian {{ opencast.version.major }}.x stable testing
+    filename: opencast
+    state: present
