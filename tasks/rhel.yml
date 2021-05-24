@@ -6,7 +6,7 @@
     name: opencast-{{ item }}
     description: Opencast RHEL $releasever Repository - {{ item }}
     baseurl: https://pkg.opencast.org/rpms/release/el/$releasever/oc-{{ '%02d' % opencast.version.major }}/{{ item }}
-    enabled: false
+    enabled: '{{ repository.enabled.release }}'
     gpgcheck: true
     gpgkey: https://pkg.opencast.org/gpgkeys/opencast-9-rpm.key
   loop:
@@ -20,7 +20,7 @@
     name: opencast-testing-{{ item }}
     description: Opencast RHEL $releasever Testing Repository - {{ item }}
     baseurl: https://pkg.opencast.org/rpms/testing/el/$releasever/oc-{{ '%02d' % opencast.version.major }}/{{ item }}
-    enabled: false
+    enabled: '{{ repository.enabled.testing }}'
     gpgcheck: true
     gpgkey: https://pkg.opencast.org/gpgkeys/opencast-9-rpm.key
   loop:

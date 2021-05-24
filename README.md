@@ -9,6 +9,10 @@ Role Variables
 
 - `opencast.version.major`
   - The version of Opencast for which the repository should be installed.
+- `repository.enables.release`
+  - If the release repository shall be enabled (default: `false`)
+- `repository.enables.testing`
+  - If the testing repository shall be enabled (default: `false`)
 
 
 Example Playbook
@@ -18,15 +22,10 @@ Including an example of how to use your role (for instance, with variables passe
 
 ```yaml
 - hosts: servers
+  become: true
   roles:
-  - { role: username.rolename, x: 42 }
-
-License
--------
-
-BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+    - role: lkiesow.opencast_repository
+      opencast:
+        version:
+          major: 9
+```
