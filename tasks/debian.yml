@@ -7,6 +7,6 @@
 
 - name: install the opencast package repository
   apt_repository:
-    repo: deb https://pkg.opencast.org/debian {{ opencast.version.major }}.x stable testing
+    repo: deb https://pkg.opencast.org/debian {{ opencast_version_major }}.x stable testing
     filename: opencast
     state: present

@@ -7,11 +7,11 @@ This Ansible role enables the package repository for RHEL, CentOS, Debian or Ubu
 Role Variables
 --------------
 
-- `opencast.version.major`
+- `opencast_version_major`
   - The version of Opencast for which the repository should be installed.
-- `repository.enabled.release`
+- `opencast_repository_enabled_release`
   - If the release repository shall be enabled (default: `false`)
-- `repository.enabled.testing`
+- `opencast_repository_enabled_testing`
   - If the testing repository shall be enabled (default: `false`)
 
 
@@ -25,7 +25,5 @@ Including an example of how to use your role (for instance, with variables passe
   become: true
   roles:
     - role: lkiesow.opencast_repository
-      opencast:
-        version:
-          major: 9
+      opencast_version_major: 9
 ```

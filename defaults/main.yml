@@ -1,5 +1,3 @@
 ---
-repository:
-  enabled:
-    testing: false
-    release: false
+opencast_repository_enabled_testing: false
+opencast_repository_enabled_release: false
