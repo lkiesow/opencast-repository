@@ -8,7 +8,7 @@ Role Variables
 --------------
 
 - `opencast_version_major`
-  - The version of Opencast for which the repository should be installed.
+  - The version of Opencast for which the repository should be installed (_required_).
 - `opencast_repository_enabled_release`
   - If the release repository shall be enabled (default: `false`)
 - `opencast_repository_enabled_testing`
@@ -18,7 +18,7 @@ Role Variables
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+Example of how to configure and use the role:
 
 ```yaml
 - hosts: servers
