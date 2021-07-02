@@ -8,11 +8,10 @@
     baseurl: https://pkg.opencast.org/rpms/release/el/$releasever/oc-{{ '%02d' % opencast_version_major }}/{{ item }}
     enabled: '{{ opencast_repository_enabled_release }}'
     gpgcheck: true
-    gpgkey: https://pkg.opencast.org/gpgkeys/opencast-9-rpm.key
+    gpgkey: https://pkg.opencast.org/gpgkeys/opencast-{{ '%02d' % opencast_version_major }}-rpm.key
   loop:
     - x86_64
     - noarch
-    - debuginfo
 
 - name: install opencast testing repository
   yum_repository:
@@ -22,11 +21,10 @@
     baseurl: https://pkg.opencast.org/rpms/testing/el/$releasever/oc-{{ '%02d' % opencast_version_major }}/{{ item }}
     enabled: '{{ opencast_repository_enabled_testing }}'
     gpgcheck: true
-    gpgkey: https://pkg.opencast.org/gpgkeys/opencast-9-rpm.key
+    gpgkey: https://pkg.opencast.org/gpgkeys/opencast-{{ '%02d' % opencast_version_major }}-rpm.key
   loop:
     - x86_64
     - noarch
-    - debuginfo
 
 - name: install epel repository
   package:
