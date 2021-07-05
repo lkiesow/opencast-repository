@@ -1,14 +1,17 @@
 ---
 
+# yamllint disable rule:line-length
 - name: install opencast repository
   yum_repository:
     file: opencast
     name: opencast-{{ item }}
     description: Opencast RHEL $releasever Repository - {{ item }}
-    baseurl: https://pkg.opencast.org/rpms/release/el/$releasever/oc-{{ '%02d' % opencast_version_major }}/{{ item }}
+    baseurl: https://pkg.opencast.org/rpms/release/el/$releasever/oc-{{ repository_version }}/{{ item }}
     enabled: '{{ opencast_repository_enabled_release }}'
     gpgcheck: true
-    gpgkey: https://pkg.opencast.org/gpgkeys/opencast-{{ '%02d' % opencast_version_major }}-rpm.key
+    gpgkey: https://pkg.opencast.org/gpgkeys/opencast-{{ repository_version }}-rpm.key
+  vars:
+    repository_version: '{{ "%02d" % opencast_version_major }}'
   loop:
     - x86_64
     - noarch
@@ -18,13 +21,16 @@
     file: opencast-testing
     name: opencast-testing-{{ item }}
     description: Opencast RHEL $releasever Testing Repository - {{ item }}
-    baseurl: https://pkg.opencast.org/rpms/testing/el/$releasever/oc-{{ '%02d' % opencast_version_major }}/{{ item }}
+    baseurl: https://pkg.opencast.org/rpms/testing/el/$releasever/oc-{{ repository_version }}/{{ item }}
     enabled: '{{ opencast_repository_enabled_testing }}'
     gpgcheck: true
-    gpgkey: https://pkg.opencast.org/gpgkeys/opencast-{{ '%02d' % opencast_version_major }}-rpm.key
+    gpgkey: https://pkg.opencast.org/gpgkeys/opencast-{{ repository_version }}-rpm.key
+  vars:
+    repository_version: '{{ "%02d" % opencast_version_major }}'
   loop:
     - x86_64
     - noarch
+# yamllint enable rule:line-length
 
 - name: install epel repository
   package:

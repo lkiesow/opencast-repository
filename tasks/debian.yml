@@ -1,5 +1,12 @@
 ---
 
+- name: install dependencies
+  package:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - gnupg2
+
 - name: install the opencast package repository key
   apt_key:
     url: https://pkg.opencast.org/gpgkeys/opencast-deb.key
@@ -7,6 +14,9 @@
 
 - name: install the opencast package repository
   apt_repository:
-    repo: deb https://pkg.opencast.org/debian {{ opencast_version_major }}.x stable testing
+    repo: >
+      deb https://pkg.opencast.org/debian
+      {{ opencast_version_major }}.x
+      stable testing
     filename: opencast
     state: present
