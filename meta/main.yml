@@ -3,7 +3,8 @@
 galaxy_info:
   author: Lars Kiesow
   role_name: opencast_repository
-  namespace: lkiesow
+  namespace: elan
+  company: ELAN e.V.
   description: Enable Opencast package repository
   license: BSD-3-Clause
   min_ansible_version: 2.9

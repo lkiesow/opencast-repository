@@ -30,6 +30,6 @@ Example of how to configure and use the role:
 - hosts: servers
   become: true
   roles:
-    - role: lkiesow.opencast_repository
+    - role: elan.opencast_repository
       opencast_version_major: 9
 ```
