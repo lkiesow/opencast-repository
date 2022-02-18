@@ -11,7 +11,7 @@
     gpgcheck: true
     gpgkey: https://pkg.opencast.org/gpgkeys/opencast-{{ repository_version }}-rpm.key
   vars:
-    repository_version: '{{ "%02d" % opencast_version_major }}'
+    repository_version: '{{ "%02d" % (opencast_version_major|int) }}'
   loop:
     - x86_64
     - noarch
@@ -26,7 +26,7 @@
     gpgcheck: true
     gpgkey: https://pkg.opencast.org/gpgkeys/opencast-{{ repository_version }}-rpm.key
   vars:
-    repository_version: '{{ "%02d" % opencast_version_major }}'
+    repository_version: '{{ "%02d" % (opencast_version_major|int) }}'
   loop:
     - x86_64
     - noarch
