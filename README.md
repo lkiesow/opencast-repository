@@ -19,6 +19,9 @@ Role Variables
     For example, you can have it deactivated by default and then activate it in the install task.
   - Other tasks rely on this being present.
   - This holds the identifier for the stable repositories by default (`[opencast-noarch, opencast-x86_64]`).
+- `opencast_repository_identifiers_testing:`
+  - List of testing RPM repository identifiers.
+  - This holds the identifier for the testing repositories by default (`[opencast-testing-noarch, opencast-testing-x86_64]`).
 
 
 Example Playbook

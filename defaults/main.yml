@@ -4,3 +4,6 @@ opencast_repository_enabled_release: false
 opencast_repository_identifiers:
   - opencast-noarch
   - opencast-x86_64
+opencast_repository_identifiers_testing:
+  - opencast-testing-noarch
+  - opencast-testing-x86_64
