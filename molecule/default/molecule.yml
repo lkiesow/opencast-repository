@@ -5,16 +5,13 @@ driver:
   name: podman
 platforms:
   - name: opencast-repository-centos-8
-    image: docker.io/pycontribs/centos:8
+    image: quay.io/centos/centos:stream8
     pre_build_image: true
   - name: opencast-repository-centos-7
-    image: docker.io/pycontribs/centos:7
+    image: docker.io/library/centos:7
     pre_build_image: true
   - name: opencast-repository-debian
-    image: docker.io/pycontribs/debian
-    pre_build_image: true
-  - name: opencast-repository-ubuntu
-    image: docker.io/pycontribs/ubuntu
+    image: docker.io/library/python:bullseye
     pre_build_image: true
 lint: |
   set -e
