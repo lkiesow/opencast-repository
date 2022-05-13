@@ -3,9 +3,12 @@
 
 - name: Verify
   hosts: all
-  gather_facts: false
+  gather_facts: true
+  vars:
+    opencast_version_major: 10
   tasks:
-  - name: test if opencast is available
-    package:
-      name: opencast
-      state: present
+    - name: test if opencast is available
+      package:
+        # yamllint disable-line rule:line-length
+        name: "{{ 'opencast-' + opencast_version_major|string + '-common' if ansible_os_family == 'Debian' else 'opencast' }}"
+        state: present
