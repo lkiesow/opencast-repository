@@ -1,13 +1,13 @@
 ---
 
 - name: check that the architecture is supported
-  assert:
+  ansible.builtin.assert:
     that: ansible_architecture == 'x86_64'
 
 - name: install on debian/ubuntu
-  include: debian.yml
+  ansible.builtin.include_tasks: debian.yml
   when: ansible_os_family == 'Debian'
 
 - name: install on centos
-  include: rhel.yml
+  ansible.builtin.include_tasks: rhel.yml
   when: ansible_os_family == 'RedHat'

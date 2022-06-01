@@ -7,5 +7,5 @@
     opencast_repository_enabled_testing: true
   tasks:
     - name: include opencast_repository
-      include_role:
+      ansible.builtin.include_role:
         name: opencast_repository

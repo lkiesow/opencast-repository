@@ -2,7 +2,7 @@
 
 # yamllint disable rule:line-length
 - name: install opencast repository
-  yum_repository:
+  ansible.builtin.yum_repository:
     file: opencast
     name: opencast-{{ item }}
     description: Opencast RHEL $releasever Repository - {{ item }}
@@ -17,7 +17,7 @@
     - noarch
 
 - name: install opencast testing repository
-  yum_repository:
+  ansible.builtin.yum_repository:
     file: opencast-testing
     name: opencast-testing-{{ item }}
     description: Opencast RHEL $releasever Testing Repository - {{ item }}
@@ -33,5 +33,5 @@
 # yamllint enable rule:line-length
 
 - name: install epel repository
-  package:
+  ansible.builtin.package:
     name: epel-release

@@ -1,7 +1,7 @@
 ---
 
 - name: install dependencies
-  apt:
+  ansible.builtin.apt:
     name:
       - apt-transport-https
       - ca-certificates
@@ -10,22 +10,22 @@
     cache_valid_time: 3600
 
 - name: install the opencast package repository key
-  apt_key:
+  ansible.builtin.apt_key:
     url: https://pkg.opencast.org/gpgkeys/opencast-deb.key
     state: present
 
 - name: remove orphan opencast package repository definition
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: >-
       deb https://pkg.opencast.org/debian
       {{ opencast_version_major }}.x
       stable testing
     filename: opencast
     state: absent
-  register: repo_removed
+  notify: update apt cache
 
 - name: install the opencast package repository
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: >-
         deb https://pkg.opencast.org/debian
         {{ opencast_version_major }}.x
@@ -33,10 +33,10 @@
     filename: opencast
     # yamllint disable-line rule:line-length
     state: "{{ 'present' if opencast_repository_enabled_release | bool else 'absent' }}"
-  register: repo_installed
+  notify: update apt cache
 
 - name: install the opencast testing package repository
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: >-
       deb https://pkg.opencast.org/debian
       {{ opencast_version_major }}.x
@@ -44,12 +44,4 @@
     filename: opencast
     # yamllint disable-line rule:line-length
     state: "{{ 'present' if opencast_repository_enabled_testing | bool else 'absent' }}"
-  register: repo_testing_installed
-
-- name: update apt cache
-  apt:
-    update_cache: true
-  when: >-
-    repo_removed is changed or
-    repo_installed is changed or
-    repo_testing_installed is changed
+  notify: update apt cache
