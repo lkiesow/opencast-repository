@@ -3,7 +3,6 @@
 - name: install dependencies
   ansible.builtin.apt:
     name:
-      - apt-transport-https
       - ca-certificates
       - gnupg2
     state: present
