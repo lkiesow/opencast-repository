@@ -1,5 +1,4 @@
 ---
-
 galaxy_info:
   author: Lars Kiesow
   role_name: opencast_repository
@@ -15,6 +14,7 @@ galaxy_info:
       versions:
         - "7"
         - "8"
+        - "9"
     - name: Debian
       versions:
         - all

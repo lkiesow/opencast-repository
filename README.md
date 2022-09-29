@@ -1,6 +1,8 @@
 Ansible: Opencast Repository Role
 =================================
 
+![molecule](https://github.com/elan-ev/opencast_repository/actions/workflows/molecule.yml/badge.svg)
+
 This Ansible role enables the package repository for RHEL, CentOS, Debian or Ubuntu.
 
 
@@ -36,3 +38,35 @@ Example of how to configure and use the role:
     - role: elan.opencast_repository
       opencast_version_major: 9
 ```
+
+Development
+-----------
+
+For development and testing you can use [molecule](https://molecule.readthedocs.io/en/latest/).
+With podman as driver you can install it like this – preferably in a virtual environment (if you use docker, substitute `podman` with `docker`):
+
+```bash
+pip install -r .dev_requirements.txt
+```
+
+Then you can *create* the test instances, apply the ansible config (*converge*) and *destroy* the test instances with these commands:
+
+```bash
+molecule create
+molecule converge
+molecule destroy
+```
+
+If you want to inspect a running test instance use `molecule login --host <instance_name>`, where you replace `<instance_name>` with the desired value.
+
+To test the role run `molecule test`.
+
+License
+-------
+
+[BSD-3-Clause](LICENSE)
+
+Author Information
+------------------
+
+[ELAN e.V](https://elan-ev.de/)

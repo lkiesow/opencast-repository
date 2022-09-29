@@ -2,10 +2,10 @@
 - name: Converge
   hosts: all
   vars:
-    opencast_version_major: 10
+    opencast_version_major: 12
     opencast_repository_enabled_release: true
     opencast_repository_enabled_testing: true
   tasks:
-    - name: include opencast_repository
+    - name: Include opencast_repository
       ansible.builtin.include_role:
         name: opencast_repository

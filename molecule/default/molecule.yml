@@ -4,15 +4,40 @@ dependency:
 driver:
   name: podman
 platforms:
-  - name: opencast-repository-centos-8
-    image: quay.io/centos/centos:stream8
-    pre_build_image: true
-  - name: opencast-repository-centos-7
+  - name: oc_repository_centos_7
     image: docker.io/library/centos:7
     pre_build_image: true
-  - name: opencast-repository-debian
+  - name: oc_repository_centos_8
+    image: quay.io/centos/centos:stream8
+    pre_build_image: false
+    command: /sbin/init
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  - name: oc_repository_centos_9
+    image: quay.io/centos/centos:stream9
+    pre_build_image: false
+    command: /sbin/init
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  - name: oc_repository_debian
     image: docker.io/library/python:bullseye
     pre_build_image: true
+  - name: oc_repository_ubuntu
+    image: docker.io/ubuntu:latest
+    pre_build_image: false
+    privileged: true
+    command: /sbin/init
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
 lint: |
   set -e
   yamllint .

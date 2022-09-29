@@ -1,14 +1,11 @@
 ---
-# This is an example playbook to execute Ansible tests.
-
 - name: Verify
   hosts: all
   gather_facts: true
   vars:
-    opencast_version_major: 10
+    opencast_version_major: 12
   tasks:
-    - name: test if opencast is available
+    - name: Test if opencast is available
       ansible.builtin.package:
-        # yamllint disable-line rule:line-length
-        name: "{{ 'opencast-' + opencast_version_major|string + '-common' if ansible_os_family == 'Debian' else 'opencast' }}"
+        name: "{{ 'opencast-' + opencast_version_major | string + '-common' if ansible_os_family == 'Debian' else 'opencast' }}"
         state: present
