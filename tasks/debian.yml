@@ -1,19 +1,18 @@
 ---
-
-- name: install dependencies
+- name: Install dependencies
   ansible.builtin.apt:
     name:
       - ca-certificates
       - gnupg2
-    state: present
     cache_valid_time: 3600
 
-- name: install the opencast package repository key
+- name: Install the opencast package repository key
   ansible.builtin.apt_key:
     url: https://pkg.opencast.org/gpgkeys/opencast-deb.key
     state: present
 
-- name: remove orphan opencast package repository definition
+- name: Remove orphan opencast package repository definition
+  notify: Update apt cache
   ansible.builtin.apt_repository:
     repo: >-
       deb https://pkg.opencast.org/debian
@@ -21,20 +20,20 @@
       stable testing
     filename: opencast
     state: absent
-  notify: update apt cache
 
-- name: install the opencast package repository
+- name: Install the opencast package repository
+  notify: Update apt cache
   ansible.builtin.apt_repository:
     repo: >-
-        deb https://pkg.opencast.org/debian
-        {{ opencast_version_major }}.x
-        stable
+      deb https://pkg.opencast.org/debian
+      {{ opencast_version_major }}.x
+      stable
     filename: opencast
     # yamllint disable-line rule:line-length
     state: "{{ 'present' if opencast_repository_enabled_release | bool else 'absent' }}"
-  notify: update apt cache
 
-- name: install the opencast testing package repository
+- name: Install the opencast testing package repository
+  notify: Update apt cache
   ansible.builtin.apt_repository:
     repo: >-
       deb https://pkg.opencast.org/debian
@@ -43,4 +42,3 @@
     filename: opencast
     # yamllint disable-line rule:line-length
     state: "{{ 'present' if opencast_repository_enabled_testing | bool else 'absent' }}"
-  notify: update apt cache
