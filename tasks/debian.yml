@@ -1,7 +1,7 @@
 ---
 
-- name: install dependencies
-  apt:
+- name: Install dependencies
+  ansible.builtin.apt:
     name:
       - apt-transport-https
       - ca-certificates
@@ -9,13 +9,13 @@
     state: present
     cache_valid_time: 3600
 
-- name: install the opencast package repository key
-  apt_key:
+- name: Install the Opencast package repository key
+  ansible.builtin.apt_key:
     url: https://pkg.opencast.org/gpgkeys/opencast-deb.key
     state: present
 
-- name: install the opencast package repository
-  apt_repository:
+- name: Install the Opencast package repository
+  ansible.builtin.apt_repository:
     repo: >
       deb https://pkg.opencast.org/debian
       {{ opencast_version_major }}.x
