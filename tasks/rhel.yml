@@ -32,3 +32,4 @@
 - name: Install epel repository
   ansible.builtin.package:
     name: epel-release
+  when: opencast_repository_enable_epel | bool

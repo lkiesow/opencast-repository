@@ -15,6 +15,11 @@ Role Variables
   - If the release repository shall be enabled (default: `false`)
 - `opencast_repository_enabled_testing`
   - If the testing repository shall be enabled (default: `false`)
+- `opencast_repository_enable_epel`
+  - Opencast uses some dependencies from EPEL RPM repository.
+    Here you can enable (value: `true`) or disable (value: `false`) installation of the
+    `epel-release` package (default: `true`). On RedHat installation with Satellite this
+    property can be handy. On Debian based systems this property do nothing.
 - `opencast_repository_identifiers:`
   - List of RPM repository identifiers.
   - This variable is not actually used in this role but can be used by other roles to temporarily activate the repository.

@@ -1,6 +1,7 @@
 ---
 opencast_repository_enabled_testing: false
 opencast_repository_enabled_release: false
+opencast_repository_enable_epel: true
 opencast_repository_identifiers:
   - opencast-noarch
   - opencast-x86_64
