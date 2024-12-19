@@ -12,7 +12,7 @@
     state: present
 
 - name: Remove orphan opencast package repository definition
-  notify: Update apt cache
+  register: rm_orphan_repo
   ansible.builtin.apt_repository:
     repo: >-
       deb https://pkg.opencast.org/debian
@@ -22,7 +22,7 @@
     state: absent
 
 - name: Install the opencast package repository
-  notify: Update apt cache
+  register: add_oc_repo
   ansible.builtin.apt_repository:
     repo: >-
       deb https://pkg.opencast.org/debian
@@ -33,7 +33,7 @@
     state: "{{ 'present' if opencast_repository_enabled_release | bool else 'absent' }}"
 
 - name: Install the opencast testing package repository
-  notify: Update apt cache
+  register: add_oc_testing_repo
   ansible.builtin.apt_repository:
     repo: >-
       deb https://pkg.opencast.org/debian
@@ -42,3 +42,11 @@
     filename: opencast
     # yamllint disable-line rule:line-length
     state: "{{ 'present' if opencast_repository_enabled_testing | bool else 'absent' }}"
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+  when: >
+    rm_orphan_repo is changed or
+    add_oc_repo is changed or
+    add_oc_testing_repo is changed
