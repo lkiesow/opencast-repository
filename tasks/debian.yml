@@ -6,10 +6,22 @@
       - gnupg2
     cache_valid_time: 3600
 
+- name: Create directory for keyrings used by apt
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
 - name: Install the opencast package repository key
-  ansible.builtin.apt_key:
+  ansible.builtin.get_url:
     url: https://pkg.opencast.org/gpgkeys/opencast-deb.key
-    state: present
+    dest: /etc/apt/keyrings/opencast.asc
+    force: false
+    owner: root
+    group: root
+    mode: '0644'
 
 - name: Remove orphan opencast package repository definition
   register: rm_orphan_repo
@@ -25,7 +37,7 @@
   register: add_oc_repo
   ansible.builtin.apt_repository:
     repo: >-
-      deb https://pkg.opencast.org/debian
+      deb [signed-by=/etc/apt/keyrings/opencast.asc] https://pkg.opencast.org/debian
       {{ opencast_version_major }}.x
       stable
     filename: opencast
@@ -36,7 +48,7 @@
   register: add_oc_testing_repo
   ansible.builtin.apt_repository:
     repo: >-
-      deb https://pkg.opencast.org/debian
+      deb [signed-by=/etc/apt/keyrings/opencast.asc] https://pkg.opencast.org/debian
       {{ opencast_version_major }}.x
       testing
     filename: opencast
